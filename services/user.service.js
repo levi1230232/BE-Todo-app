@@ -15,7 +15,7 @@ export const deleteUser = async (id) => {
   const user = await User.findById(id);
 
   if (user.role === "ADMIN") {
-    throw new Error("Không thể xóa tài khoản Admin!");
+    throw new Error("Cannot delete account admin Admin!");
   }
   await Todo.deleteMany({ user: id });
   return await User.findByIdAndDelete(id);
