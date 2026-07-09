@@ -84,7 +84,7 @@ router.get("/:id", getUserById);
  *         required: true
  *         description: User ID
  *         schema:
- *           type: integer
+ *           type: string
  *           example: 1
  *     responses:
  *       200:
