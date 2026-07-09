@@ -12,6 +12,11 @@ export const getUserById = async (id) => {
 };
 
 export const deleteUser = async (id) => {
+  const user = await User.findById(id);
+
+  if (user.role === "ADMIN") {
+    throw new Error("Không thể xóa tài khoản Admin!");
+  }
   await Todo.deleteMany({ user: id });
   return await User.findByIdAndDelete(id);
 };
