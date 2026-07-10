@@ -19,7 +19,7 @@ const router = express.Router();
  */
 
 router.use(auth);
-router.use(role("ADMIN"));
+// router.use(role("ADMIN"));
 
 /**
  * @swagger
@@ -38,7 +38,7 @@ router.use(role("ADMIN"));
  *       403:
  *         description: Forbidden. Admin access required.
  */
-router.get("/", getAllUsers);
+router.get("/", role("ADMIN"), getAllUsers);
 
 /**
  * @swagger
@@ -67,7 +67,7 @@ router.get("/", getAllUsers);
  *       403:
  *         description: Forbidden.
  */
-router.get("/:id", getUserById);
+router.get("/:id", role("ADMIN", "USER"), getUserById);
 
 /**
  * @swagger
@@ -96,6 +96,6 @@ router.get("/:id", getUserById);
  *       403:
  *         description: Forbidden.
  */
-router.delete("/:id", deleteUser);
+router.delete("/:id", role("ADMIN"), deleteUser);
 
 export default router;
